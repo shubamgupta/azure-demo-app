@@ -3,34 +3,39 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <h1>Hack@Brown Workshops</h1>
+    <p class="lead">
+        A Flask demo app for
+        <a href="{{ url_for('workshop', title='Cloud Hosting with Microsoft Azure') }}">Cloud Hosting with Microsoft Azure</a>
+    </p>
+    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more about Flask &raquo;</a></p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+    <div class="col-md-2">
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+    <div class="col-md-8">
+        <h2>Upcoming Workshops</h2>
+        <ul class="list-group">
+            {% for workshop in upcoming %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('workshop', title=workshop.title) }}">{{ workshop.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Past Workshops</h2>
+        <ul class="list-group">
+            {% for workshop in past %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('workshop', title=workshop.title) }}">{{ workshop.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
-    <div class="col-md-4">
-        <h2>Python Tools for Visual Studio</h2>
-        <p>
-            PTVS is a free, open source plugin that turns Visual Studio into a Python IDE
-            with support for editing, browsing, IntelliSense, Azure remote debugging,
-            profiling and more.
-        </p>
-        <p><a class="btn btn-default" href="http://pytools.codeplex.com">Learn more &raquo;</a></p>
+    <div class="col-md-2">
+
     </div>
 </div>
 

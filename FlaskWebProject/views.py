@@ -5,6 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject import app
+from FlaskWebProject import model
 
 @app.route('/')
 @app.route('/home')
@@ -12,9 +13,23 @@ def home():
     """Renders the home page."""
     return render_template(
         'index.html',
-        title='Home Page',
-        year=datetime.now().year,
+        title='Home',
+        upcoming=model.upcoming_workshops(),
+        past=model.past_workshops()
     )
+
+
+@app.route('/workshop/<title>')
+def workshop(title):
+    workshop = model.by_title(title)
+    return render_template('workshop.html', title=title, workshop=workshop)
+
+
+@app.route('/series/<name>')
+def series(name):
+    workshops = model.by_series(name)
+    return render_template('series.html', title=name, series=name, workshops=workshops)
+
 
 @app.route('/contact')
 def contact():
@@ -25,6 +40,7 @@ def contact():
         year=datetime.now().year,
         message='Your contact page.'
     )
+
 
 @app.route('/about')
 def about():
