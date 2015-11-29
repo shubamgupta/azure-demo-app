@@ -2,6 +2,8 @@
 Routes and views for the flask application.
 """
 
+import os
+
 from datetime import datetime
 from flask import render_template
 from slugify import slugify
@@ -34,3 +36,7 @@ def series(name):
     return render_template('series.html', title=name,
     series=name,
     workshops=workshops)
+
+@app.route('/test')
+def test():
+    return str(os.environ)
