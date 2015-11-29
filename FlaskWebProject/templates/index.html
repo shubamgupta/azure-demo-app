@@ -6,7 +6,7 @@
     <h1>Hack@Brown Workshops</h1>
     <p class="lead">
         A Flask demo app for
-        <a href="{{ url_for('workshop', title='Cloud Hosting with Microsoft Azure') }}">Cloud Hosting with Microsoft Azure</a>
+        <a href="{{ url_for('workshop', title=slugify('Cloud Hosting with Microsoft Azure')) }}">Cloud Hosting with Microsoft Azure</a>
     </p>
     <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more about Flask &raquo;</a></p>
 </div>
@@ -20,7 +20,7 @@
         <ul class="list-group">
             {% for workshop in upcoming %}
                 <li class="list-group-item">
-                    <a href="{{ url_for('workshop', title=workshop.title) }}">{{ workshop.title }}</a>
+                    <a href="{{ url_for('workshop', title=workshop.title_slug) }}">{{ workshop.title }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -29,7 +29,7 @@
         <ul class="list-group">
             {% for workshop in past %}
                 <li class="list-group-item">
-                    <a href="{{ url_for('workshop', title=workshop.title) }}">{{ workshop.title }}</a>
+                    <a href="{{ url_for('workshop', title=workshop.title_slug) }}">{{ workshop.title }}</a>
                 </li>
             {% endfor %}
         </ul>

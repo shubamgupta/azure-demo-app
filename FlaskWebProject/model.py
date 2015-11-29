@@ -1,5 +1,6 @@
 from datetime import datetime
 from pytz import timezone
+from slugify import slugify
 
 class Workshop:
     __slots__ = ['title', 'when', 'location', 'series', 'facebook_event']
@@ -11,6 +12,14 @@ class Workshop:
         self.facebook_event = facebook_event
         self.series = series
 
+    @property
+    def title_slug(self):
+        return slugify(self.title)
+
+    @property
+    def series_slug(self):
+        return slugify(self.series)
+
     def __str__(self):
         base = '"{}" at {} in {}'.format(self.title, self.when, self.location)
         if self.series is not None:
@@ -21,7 +30,7 @@ class Workshop:
     def __repr__(self):
         return '<Workshop title="{}", when={}, location="{}", series="{}", facebook_event={}>' \
             .format(self.title, self.when, self.location, self.series, self.facebook_event)
-        
+
 eastern = timezone('US/Eastern')
 
 workshops = [
@@ -56,10 +65,10 @@ def upcoming_workshops():
 
 def by_title(title):
     for workshop in workshops:
-        if workshop.title == title:
+        if slugify(workshop.title) == title:
             return workshop
     raise KeyError('Workshop with title "{}" not found'.format(title))
 
 
 def by_series(name):
-    return [w for w in workshops if w.series == name]
+    return [w for w in workshops if slugify(w.series) == name]

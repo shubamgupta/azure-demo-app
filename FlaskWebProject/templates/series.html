@@ -14,7 +14,7 @@
         <ul class="list-group">
             {% for workshop in workshops %}
                 <li class="list-group-item">
-                    <a href="{{ url_for('workshop', title=workshop.title) }}">{{ workshop.title }}</a>
+                    <a href="{{ url_for('workshop', title=workshop.title_slug) }}">{{ workshop.title }}</a>
                 </li>
             {%  endfor %}
         </ul>
