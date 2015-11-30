@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 app.debug = True
 
-# handler = FileHandler('wsgi.log')
-# handler.setLevel(logging.DEBUG)
-# app.logger.addHandler(handler)
+handler = FileHandler('D:\home\site\wwwroot\app.log')
+handler.setLevel(logging.DEBUG)
+app.logger.addHandler(handler)
 
 import FlaskWebProject.views
